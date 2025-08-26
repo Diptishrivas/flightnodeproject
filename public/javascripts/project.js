@@ -5,4 +5,5 @@ $(document).ready(function(){
                 $('#destinationcity').append($('<option>').text(item.cityname).val(item.cityid))
             })
         })
+        
     })  
