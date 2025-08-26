@@ -1,0 +1,228 @@
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+        <script src="/javascripts/project.js"></script>
+
+        <title>Flight Interface</title>
+
+        <style>
+
+   .main{
+       width: 100vw;
+       height: 100vh;
+       background-color: #273c75;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+   }
+     .box{
+
+        width: 50%;
+        height:auto;
+        background-color: #ffff;
+        padding: 15px;
+        border-radius: 15px;
+
+    }
+    .heading{
+        font-size: 20px;
+        letter-spacing: 1;
+        color: rgb(62, 95, 205);
+    }
+
+   
+   .dayss{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+   }
+   .buttonstyle{
+         width: 100%;
+   }
+        </style>
+    </head>
+    <!-- <form action="#"> -->
+        <div class="main">
+            <div class="box">
+       <div class="heading">
+        <img src="/images/flight.jpg" width="42">
+            Flight Updation
+
+       </div>
+       <!-- <form class="row g-3"> -->
+        <form class="row g-3" action="/flightenquiry/flight_edit_delete" method="post" >
+                 <input type="hidden" name="flightid" value="<%=data.flightid%>">
+        <div class="col-md-6">
+          <label for="flightname" class="form-label"><b>Flight Name</b></label>
+          <input type="flightname" class="form-control" id="flightname" name="flightname" value="<%=data.flightname%>">
+        </div>
+        <div class="col-md-6">
+        <label for="inputState" class="form-label"><b>State</b></label>
+        <select id="inputState" class="form-select" name="flighttype">
+          <option><%=data.types%></option>
+          <option>Economy</option>
+          <option>Buisness</option>
+          <option>Buisness/Economy</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="noofseat" class="form-label"><b>Total Seat</b></label>
+        <input type="text" class="form-control" id="noofseat" name="noofseat" value="<%=data.totalseats%>">
+      </div>
+      <div class="col-md-6">
+        <label for="days" class="form-label"><b>Select Flight Days</b></label>
+            <% var wd=data.days.split(",") %>
+
+        <div class="dayss"> 
+          <span class="form-check">
+            <% var mchk=''
+               wd.map((item)=>
+               {
+                if(item=='Mon')
+                {
+                  mchk='checked'
+                }
+               }) %>    
+               <input <%=mchk %> class="form-check-input" type="checkbox" name="days" value="Mon" id="days">
+
+            <label for="days" class="form-label">
+              Mon
+            </label>
+          </span>
+          <span class="form-check">
+            
+            <% var tchk=''
+            wd.map((item)=>
+            {
+             if(item=='Tue')
+             {
+               tchk='checked'
+             }
+            }) %>
+            <input <%=tchk %> class="form-check-input" type="checkbox" name="days" value="Tue" id="days">
+            <label for="days" class="form-label">
+              tue
+            </label>
+          </span>
+          <span class="form-check">
+            <% var wchk=''
+            wd.map((item)=>
+            {
+             if(item=='Wed')
+             {
+               wchk='checked'
+             }
+            }) %>
+            <input <%=wchk %> class="form-check-input" type="checkbox" name="days" value="Wed" id="days">
+            <label for="days" class="form-label">
+              wed
+            </label>
+          </span>
+          <span class="form-check">
+            <% var thck=''
+            wd.map((item)=>
+            {
+             if(item=='Thu')
+             {
+               thck='checked'
+             }
+            }) %>
+            <input <%=thck %>class="form-check-input" type="checkbox" name="days" value="Thu" id="days">
+            <label for="days" class="form-label">
+              Thu
+            </label>
+          </span>
+          <span class="form-check">
+            <% var fchk=''
+            wd.map((item)=>
+            {
+             if(item=='Fri')
+             {
+               fchk='checked'
+             }
+            }) %>
+            <input <%=fchk %> class="form-check-input" type="checkbox" name="days" value="Fri" id="days">
+            <label for="days" class="form-label">
+              Fri
+            </label>
+          </span>
+          <span class="form-check">
+            <% var schk=''
+            wd.map((item)=>
+            {
+             if(item=='Sat')
+             {
+               schk='checked'
+             }
+            }) %>
+            <input <%=schk %> class="form-check-input" type="checkbox" name="days" value="Sat" id="days">
+            <label for="days" class="form-label">
+              sat
+            </label>
+          </span>
+          <span class="form-check">
+            <% var suchk=''
+            wd.map((item)=>
+            {
+             if(item=='Sun')
+             {
+               suchk='checked'
+             }
+            }) %>
+            <input <%=suchk %>class="form-check-input" type="checkbox" name="days" value="Sun" id="days">
+            <label for="days" class="form-label">
+              sun
+            </label>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <label for="Sourcecity" class="form-label"><b>Source City</b></label>
+        <select id="Sourcecity" class="form-select" name="Sourcecity">
+          <option value="<%=data.source%>"><%=data.source%></option>
+          
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="deptime" class="form-label"><b>Departure Time</b></label>
+        <input type="time" class="form-control" id="deptime" name="deptime" value="<%=data.departuretime%>">
+      </div>
+      <div class="col-md-3">
+        <label for="destinationcity" class="form-label"><b>Destination City</b></label>
+        <select id="destinationcity" class="form-select" name="destinationcity">
+          <option value="<%=data.destination%>"><%=data.destination%></option>
+           
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="arrtime" class="form-label"> <b>Arrival Time</b></label>
+        <input type="time" class="form-control" id=" arrtime" name="arrtime" value="<%=data.arrivaltime%>">
+      </div>
+      <div class="col-md-12">
+        <label for="Company" class="form-label"> <b>Company</b></label>
+        <input type="text" class="form-control" id="Company" name="Company" value="<%=data.company%>">
+      </div>
+      <!-- <div class="col-md-6">
+        <label for="logo" class="form-label"> <b>Logo</b></label>
+        <input type="file" class="form-control" id="logo" name="logo">
+   
+      </div> -->
+      <div class="col-md-6">
+        <button type="submit" value="Edit" name="btn" class="btn btn-secondary buttonstyle"><b>Update</b></button>
+      </div>
+      <div class="col-md-6">
+        <button type="submit"  name="btn" value="Delete" class="btn btn-secondary buttonstyle"><b>Delete</b></button>
+      </div>
+ 
+     
+       </form>      
+          
+         </div>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+s
+    
+</html>
+
